@@ -1,0 +1,104 @@
+RetMap retMap = new RetMap();
+try {
+	session.beginTransaction();
+
+	session.commit();
+} catch (Exception e) {
+	session.rollback();
+	e.printStackTrace();
+	retMap.setRetcode(-1);
+	retMap.setRetmsg("获取失败");
+}
+return retMap;
+
+
+UUID.randomUUID().toString().replaceAll("\\-", "")
+
+
+String转其他类型
+JSON.parseObject(reviewString, new TypeReference<List<Map<String,Object>>>() {
+                     });
+
+
+
+import java.util.HashMap;
+import com.sunsheen.api.common.ICustomAPI;
+import com.sunsheen.jfids.dc.common.AYUser;
+import com.sunsheen.jfids.dc.common.RetMap;
+import com.sunsheen.jfids.dc.login.User;
+import com.sunsheen.jfids.system.database.DBSession;
+import com.sunsheen.jfids.util.DataBaseUtil;
+
+public class CheckTaskDataUpdateSubtask implements ICustomAPI {
+	private DBSession session = DataBaseUtil.getHibernateSession();
+	User user = null;
+
+	@Override
+	public Object service(HashMap<String, Object> params) {
+		RetMap retMap = new RetMap();
+		try {
+			// 获取当前登录人
+			user = AYUser.getUser(params);
+
+			session.beginTransaction();
+
+			session.commit();
+			retMap.setRetmsg("获取成功");
+		} catch (Exception e) {
+			session.rollback();
+			e.printStackTrace();
+			retMap.setRetcode(-1);
+			retMap.setRetmsg("获取失败");
+		}
+		return retMap;
+	}
+}
+
+
+
+
+
+
+//map遍历
+Set<Map.Entry<String, Object>> entrySet = dataMap.entrySet();
+			Iterator<Map.Entry<String, Object>> iter = entrySet.iterator();
+			while (iter.hasNext()) {
+				Map.Entry<String, Object> entry = iter.next();
+				System.out.println(entry.getKey() + "\t" + entry.getValue());
+			}
+
+
+//获取参数
+private Map<String, Object> getParamsMap() throws UnsupportedEncodingException {
+	Map<String, Object> paramsMap = new HashMap<String, Object>();
+	Enumeration<String> paramsName = request.getParameterNames();
+	while (paramsName.hasMoreElements()) {
+		String key = paramsName.nextElement();
+		String value = new String(request.getParameter(key));
+		paramsMap.put(key, value);
+	}
+	return paramsMap;
+}
+
+
+
+sql:
+DATE_FORMAT(starttime,'%Y-%m-%d %H:%i:%S') as starttime
+
+#if($P.dept_id and $P.dept_id!='')                
+    and name like '%$P.name%'  
+#end 
+
+'$S.id','$S.username','$S.depart[0].id','$S.depart[0].text'
+now()
+
+
+
+
+long startTime = System.currentTimeMillis(); //获取开始时间
+
+doSomething(); //测试的代码段
+
+long endTime = System.currentTimeMillis(); //获取结束时间
+
+System.out.println("程序运行时间：" + (endTime - startTime) + "ms"); //输出程序运行时间
