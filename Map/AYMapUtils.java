@@ -8,6 +8,28 @@ import java.util.Map;
 import java.util.Set;
 
 public class AYMapUtils {
+	
+	/**
+	 * 转小写
+	 * 
+	 * @param list
+	 * @return
+	 */
+	public static List<Map<String, Object>> getSelectLow(List<Map<String, Object>> list) {
+		List<Map<String, Object>> select = new ArrayList<>();
+		for (Map<String, Object> map : list) {
+			Map<String, Object> resultMap = new HashMap<>();
+			Set<String> keySet = map.keySet();
+			for (String key : keySet) {
+				String newKey = key.toLowerCase();
+				newKey = newKey.replace("_", "");
+				resultMap.put(newKey, map.get(key));
+			}
+			select.add(resultMap);
+		}
+		return select;
+	}
+	
 	/**
 	 * 根据map中的某个key 去除List中重复的map
 	 * 
